@@ -35,7 +35,7 @@
  *      - Number() se value ko number mein convert karo
  *      - Agar result NaN hai, toh NaN hi return karo (caller handle karega)
  *      - Example: convertToNumber("42.5") => 42.5
- *      - Example: convertToNumber(true) => 1
+ *      - Example: conveweightrtToNumber(true) => 1
  *      - Example: convertToNumber("hello") => NaN
  *      - Example: convertToNumber("") => 0
  *
@@ -52,21 +52,52 @@
  *   stringToChars("Dak")                  // => ["D", "a", "k"]
  */
 export function parcelToJSON(parcel) {
+  if (typeof parcel==="undefined"){
+    return ""
+  }
+  try{
+
+    return JSON.stringify(parcel)
+  }
+  catch(error){
+    return ""
+  }
   // Your code here
 }
 
 export function jsonToParcel(jsonString) {
+  if (typeof jsonString!=="string" ){
+    return null
+  }
+  // if(Array.isArray(jsonString)|| typeof jsonString==="object"){
+  //   return JSON.parse(jsonString)
+  // }
+  try{
+    return JSON.parse(jsonString)
+  }
+  catch(invalid){
+    return null
+  }
   // Your code here
 }
 
 export function convertToString(value) {
+  return String(value)
   // Your code here
 }
 
 export function convertToNumber(value) {
+  if(Number(value)===NaN){
+    return NaN
+  }
+  return Number(value)
   // Your code here
 }
 
 export function stringToChars(str) {
+  if(typeof str !=="string"){
+     return []
+  }
+  return Array.from(str)
   // Your code here
 }

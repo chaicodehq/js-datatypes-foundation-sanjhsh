@@ -7,7 +7,7 @@
  *
  * Methods to explore: template literals (`${}`), .startsWith(),
  *   .endsWith(), .padStart(), .padEnd(), .match()
- *
+ *{...regularMenu, ...specialsMenu} 
  * Functions:
  *
  *   1. writePostcard(sender, receiver, message)
@@ -52,21 +52,50 @@
  *   countVowels("Namaste")     // => 3
  */
 export function writePostcard(sender, receiver, message) {
+  if(typeof sender!=="string" || typeof receiver!=="string" || typeof message!=="string"|| receiver.trim().length===0 ||sender.trim().length===0||message.trim().length===0){
+    return ""
+  }
+  return `Priy ${receiver},\n\n${message}\n\nAapka/Aapki,\n${sender}`
   // Your code here
 }
 
 export function isValidPincode(code) {
+  if (typeof code!=="string"){
+    return false
+  }
+  if (code.startsWith("0")||  !/^\d+$/.test(code) || code.length!==6){
+    return false
+  }
+  return true
   // Your code here
 }
 
 export function formatPostcardField(label, value, width) {
+  if (typeof label!=="string" || typeof value!=="string"){
+    return ""
+  }
+  if(width){
+    return label.padEnd(width)+": " + value
+  }
+  return label.padEnd(12)+": " + value
   // Your code here
 }
 
 export function isFromState(address, stateCode) {
+  if (typeof address!=="string" || typeof stateCode!=="string"){
+    return false
+  }
+  if(address.endsWith(stateCode)){
+    return true
+  }
+  return false
   // Your code here
 }
 
 export function countVowels(message) {
+  if (typeof message!=="string" || !(message.match(/[aeiouAEIOU]/g)) || message===""){
+    return 0
+  }
+  return (message.match(/[aeiouAEIOU]/g)).length
   // Your code here
 }
